@@ -1,1 +1,1 @@
-Two scripts that allow you to execute a command to a Cisco device. The inline version (go-do-inline) will expect you to provide the device IP and the command to be executed as arguments. the go-do version will prompt for the device IP and command to be executed.
+Two scripts that allow you to execute a command to a Cisco device. The inline version (go-do-inline) will expect you to provide the device IP and the command to be executed as arguments. The go-do version will prompt for the device IP and command to be executed. Written using Python3.7.
