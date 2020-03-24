@@ -4,7 +4,6 @@ import re
 import getpass
 import time
 import sys
-import re
 
 # Disable paging
 def DISABLE_PAGING(remoteConn):
@@ -20,6 +19,13 @@ def DISABLE_PAGING(remoteConn):
 
 if __name__ == '__main__':
     # Login prompt
+    print(
+    '''
+    ######################################################################
+    ### Please enter in connection information and command to be used. ###
+    ######################################################################
+    '''
+        )
     ip = sys.argv[1]
     username = input("Username:")
     password = getpass.getpass("User Password:")
@@ -48,9 +54,15 @@ if __name__ == '__main__':
         remoteConn.send("enable")
         remoteConn.send("\n")
         remoteConn.send(enablePassword)
-    
-    # Show current prompt
-    print(outputStr)
+        remoteConn.send("\n")
+        time.sleep(1)
+        output = remoteConn.recv(1000000)
+        outputStr = output.decode('utf-8')
+        if (outputStr.endswith('#')):
+            print("In privileged mode.")
+        else:
+            print("Could not enter privileged mode.")
+            exit()
 
     # Disable paging
     DISABLE_PAGING(remoteConn)
